@@ -8,7 +8,7 @@ const pains = [
 
 const DoresSection = () => {
   return (
-    <section className="py-20 md:py-28 px-4 bg-background">
+    <section id="dores" className="py-20 md:py-28 px-4 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="grid gap-6 md:grid-cols-3 mb-12">
           {pains.map((pain, i) => (

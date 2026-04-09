@@ -7,11 +7,15 @@ import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import ScrollAnimator from "@/components/ScrollAnimator";
+import Navbar from "@/components/Navbar";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
     <>
       <ScrollAnimator />
+      <Navbar />
+      <FloatingWhatsApp />
       <HeroSection />
       <DoresSection />
       <SobreSection />

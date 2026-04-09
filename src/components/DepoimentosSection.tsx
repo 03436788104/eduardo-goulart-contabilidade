@@ -21,7 +21,7 @@ const testimonials = [
 
 const DepoimentosSection = () => {
   return (
-    <section className="py-20 md:py-28 px-4 bg-secondary/50">
+    <section id="depoimentos" className="py-20 md:py-28 px-4 bg-secondary/50">
       <div className="max-w-5xl mx-auto">
         <h2 className="fade-up section-title text-center mb-4">O que dizem os clientes</h2>
         <p className="fade-up section-subtitle text-center mb-14">Resultados reais de pessoas que transformaram sua vida financeira</p>

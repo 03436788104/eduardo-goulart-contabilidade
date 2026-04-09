@@ -26,7 +26,7 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-20 md:py-28 px-4 bg-background">
+    <section id="faq" className="py-20 md:py-28 px-4 bg-background">
       <div className="max-w-3xl mx-auto">
         <h2 className="fade-up section-title text-center mb-4">Perguntas frequentes</h2>
         <p className="fade-up section-subtitle text-center mb-12">Tire suas dúvidas antes de entrar em contato</p>

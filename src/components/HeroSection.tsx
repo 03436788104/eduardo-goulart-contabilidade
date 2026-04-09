@@ -4,13 +4,8 @@ const WHATSAPP_URL = "https://wa.me/5565984464370";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
-      {/* Background gradient */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{ background: "var(--hero-gradient)" }}
-      />
-      {/* Decorative circles */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+      <div className="absolute inset-0 -z-10" style={{ background: "var(--hero-gradient)" }} />
       <div className="absolute top-20 right-10 w-72 h-72 rounded-full opacity-10 bg-accent animate-float" />
       <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full opacity-5 bg-primary-foreground animate-float" style={{ animationDelay: "1.5s" }} />
 
@@ -26,7 +21,7 @@ const HeroSection = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="btn-whatsapp-large animate-fade-in inline-flex"
-          style={{ animationDelay: "0.4s", background: "hsl(0 0% 100% / 0.15)", backdropFilter: "blur(10px)", border: "1px solid hsl(0 0% 100% / 0.3)" }}
+          style={{ animationDelay: "0.4s" }}
         >
           <MessageCircle className="w-6 h-6" />
           Falar no WhatsApp

@@ -4,7 +4,7 @@ const WHATSAPP_URL = "https://wa.me/5565984464370";
 
 const CTASection = () => {
   return (
-    <section className="py-20 md:py-28 px-4 relative overflow-hidden">
+    <section id="contato" className="py-20 md:py-28 px-4 relative overflow-hidden">
       <div className="absolute inset-0 -z-10" style={{ background: "var(--hero-gradient)" }} />
       <div className="absolute top-10 left-10 w-64 h-64 rounded-full opacity-10 bg-primary-foreground animate-float" />
 
@@ -20,7 +20,6 @@ const CTASection = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="fade-up btn-whatsapp-large inline-flex"
-          style={{ background: "hsl(0 0% 100% / 0.15)", backdropFilter: "blur(10px)", border: "1px solid hsl(0 0% 100% / 0.3)" }}
         >
           <MessageCircle className="w-7 h-7" />
           Falar no WhatsApp agora

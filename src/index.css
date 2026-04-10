@@ -295,7 +295,7 @@
   }
 
   .option-card.selected {
-    @apply border-primary bg-primary/8 text-primary;
+    @apply border-primary bg-primary/[0.08] text-primary;
     border-color: hsl(var(--primary));
     background-color: hsl(var(--primary) / 0.06);
   }

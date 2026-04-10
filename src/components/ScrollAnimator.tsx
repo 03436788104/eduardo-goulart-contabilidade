@@ -2,20 +2,51 @@ import { useEffect } from "react";
 
 const ScrollAnimator = () => {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
+    // Cria o observer com configurações otimizadas
+    const createObserver = () => {
+      return new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              // Não faz unobserve para permitir re-entrada se necessário
+            }
+          });
+        },
+        {
+          threshold: 0.08,
+          rootMargin: "0px 0px -40px 0px",
+        }
+      );
+    };
 
-    document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+    const observer = createObserver();
 
-    return () => observer.disconnect();
+    // Observa todos os elementos .fade-up existentes
+    const observe = () => {
+      document.querySelectorAll(".fade-up").forEach((el) => {
+        observer.observe(el);
+      });
+    };
+
+    observe();
+
+    // MutationObserver para elementos adicionados dinamicamente (ex: formulário multi-step)
+    const mutationObserver = new MutationObserver(() => {
+      document.querySelectorAll(".fade-up:not(.visible)").forEach((el) => {
+        observer.observe(el);
+      });
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   return null;

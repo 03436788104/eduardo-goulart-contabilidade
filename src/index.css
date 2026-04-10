@@ -2,47 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 210 30% 98%;
-    --foreground: 215 40% 12%;
+    /* ──────────────────────────────────────────
+       SISTEMA DE DESIGN PREMIUM — Eduardo Goulart
+       Paleta: Azul Marinho Profundo + Verde Esmeralda
+    ────────────────────────────────────────── */
+    --background: 220 25% 97%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 40% 12%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 40% 12%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 215 90% 42%;
+    /* Primária: Azul Marinho → credibilidade, estabilidade financeira */
+    --primary: 222 84% 38%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 50% 95%;
-    --secondary-foreground: 215 40% 12%;
+    /* Secundária: Azul Gelo suave */
+    --secondary: 218 40% 94%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 30% 94%;
-    --muted-foreground: 215 15% 46%;
+    /* Muted */
+    --muted: 220 20% 93%;
+    --muted-foreground: 220 15% 50%;
 
-    --accent: 200 85% 50%;
+    /* Accent: Verde Esmeralda → crescimento, dinheiro, sucesso */
+    --accent: 158 72% 38%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 80% 56%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 30% 90%;
-    --input: 214 30% 90%;
-    --ring: 215 90% 42%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 222 84% 38%;
+    --radius: 0.875rem;
 
-    --radius: 0.75rem;
+    /* ──── Tokens de Gradiente ──── */
+    --hero-gradient: linear-gradient(135deg, hsl(222 84% 32%) 0%, hsl(222 84% 44%) 50%, hsl(210 90% 48%) 100%);
+    --hero-gradient-dark: linear-gradient(135deg, hsl(222 84% 24%) 0%, hsl(222 84% 36%) 100%);
+    --emerald-gradient: linear-gradient(135deg, hsl(158 72% 34%) 0%, hsl(168 72% 42%) 100%);
+    --gold-gradient: linear-gradient(135deg, hsl(42 90% 52%) 0%, hsl(38 95% 58%) 100%);
+    --surface-gradient: linear-gradient(180deg, hsl(220 25% 97%) 0%, hsl(220 30% 94%) 100%);
 
-    /* Custom tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(215 90% 42%), hsl(200 85% 50%));
-    --hero-gradient-dark: linear-gradient(135deg, hsl(215 90% 30%), hsl(200 85% 38%));
-    --card-shadow: 0 4px 24px -4px hsl(215 90% 42% / 0.1);
-    --card-shadow-hover: 0 8px 32px -4px hsl(215 90% 42% / 0.18);
-    --glow: 0 0 40px hsl(200 85% 50% / 0.15);
+    /* ──── Tokens de Sombra Premium ──── */
+    --shadow-xs:    0 1px 3px hsl(222 47% 11% / 0.06);
+    --shadow-sm:    0 2px 8px hsl(222 47% 11% / 0.08);
+    --shadow-md:    0 4px 20px hsl(222 47% 11% / 0.10);
+    --shadow-lg:    0 8px 32px hsl(222 47% 11% / 0.12);
+    --shadow-xl:    0 16px 48px hsl(222 84% 38% / 0.16);
+    --shadow-glow:  0 0 48px hsl(222 84% 38% / 0.18);
+    --shadow-emerald: 0 8px 32px hsl(158 72% 38% / 0.25);
 
+    --card-shadow:       var(--shadow-md);
+    --card-shadow-hover: var(--shadow-xl);
+
+    /* ──── Sidebar (compatibilidade Shadcn) ──── */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -54,66 +74,303 @@
   }
 }
 
+/* ────────────────────────────────────────────────
+   BASE
+──────────────────────────────────────────────── */
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
+/* ────────────────────────────────────────────────
+   COMPONENTS — Sistema de Botões e Cards Premium
+──────────────────────────────────────────────── */
 @layer components {
+
+  /* ── Botão WhatsApp Principal ── */
   .btn-whatsapp {
-    @apply inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg
-           bg-primary text-primary-foreground
+    @apply relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-base
+           text-white overflow-hidden
            transition-all duration-300 ease-out
-           hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
-           focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+           hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-primary/30;
     background: var(--hero-gradient);
+    box-shadow: 0 6px 24px hsl(222 84% 38% / 0.35);
   }
 
+  .btn-whatsapp::after {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 100%);
+  }
+
+  .btn-whatsapp:hover::after { opacity: 1; }
   .btn-whatsapp:hover {
-    background: var(--hero-gradient-dark);
+    box-shadow: 0 10px 40px hsl(222 84% 38% / 0.45);
   }
 
   .btn-whatsapp-large {
-    @apply btn-whatsapp text-xl px-10 py-5;
+    @apply btn-whatsapp text-lg px-10 py-5 rounded-2xl;
   }
 
+  /* ── Botão Secundário (outline) ── */
+  .btn-outline-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
+           border-2 border-primary text-primary bg-transparent
+           transition-all duration-200
+           hover:bg-primary hover:text-white hover:shadow-md hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-primary/40;
+  }
+
+  /* ── Botão Esmeralda (CTA alternativo) ── */
+  .btn-emerald {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-white
+           transition-all duration-300 hover:-translate-y-1
+           focus:outline-none focus:ring-4 focus:ring-accent/30;
+    background: var(--emerald-gradient);
+    box-shadow: var(--shadow-emerald);
+  }
+
+  /* ── Tipografia ── */
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-foreground tracking-tight;
+    @apply text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
   }
 
   .section-subtitle {
-    @apply text-lg text-muted-foreground max-w-2xl mx-auto;
+    @apply text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed;
   }
 
+  /* ── Card Base Premium ── */
   .glass-card {
-    @apply bg-card rounded-2xl p-6 md:p-8 border border-border/50;
-    box-shadow: var(--card-shadow);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    @apply bg-card rounded-3xl p-6 md:p-8 border border-border/60 relative overflow-hidden;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.35s cubic-bezier(.22,.68,0,1.2), transform 0.35s cubic-bezier(.22,.68,0,1.2);
   }
 
   .glass-card:hover {
-    box-shadow: var(--card-shadow-hover);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
   }
 
+  /* Card com borda de destaque */
+  .glass-card-accent {
+    @apply glass-card;
+    border-color: hsl(var(--accent) / 0.3);
+  }
+
+  /* ── Badge / Pill ── */
+  .badge-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
+  }
+
+  .badge-primary {
+    @apply badge-pill bg-primary/10 text-primary;
+  }
+
+  .badge-emerald {
+    @apply badge-pill bg-accent/10 text-accent;
+  }
+
+  .badge-gold {
+    @apply badge-pill text-amber-700;
+    background: hsl(42 90% 52% / 0.12);
+  }
+
+  /* ── Ícone Container ── */
+  .icon-box {
+    @apply flex items-center justify-center rounded-2xl shrink-0 transition-transform duration-300;
+  }
+
+  .icon-box-primary {
+    @apply icon-box;
+    background: var(--hero-gradient);
+    box-shadow: 0 4px 16px hsl(222 84% 38% / 0.25);
+  }
+
+  .icon-box-emerald {
+    @apply icon-box;
+    background: var(--emerald-gradient);
+    box-shadow: 0 4px 16px hsl(158 72% 38% / 0.25);
+  }
+
+  .icon-box-gold {
+    @apply icon-box;
+    background: var(--gold-gradient);
+  }
+
+  /* ── Animações de entrada (scroll) ── */
   .fade-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(.22,.68,0,1), transform 0.65s cubic-bezier(.22,.68,0,1);
   }
 
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Divider decorativo ── */
+  .section-divider {
+    @apply w-16 h-1 rounded-full mx-auto mb-6;
+    background: var(--emerald-gradient);
+  }
+
+  /* ── Highlight de texto em gradiente ── */
+  .text-gradient {
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-emerald {
+    background: var(--emerald-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Stat card (métricas) ── */
+  .stat-card {
+    @apply glass-card text-center;
+  }
+
+  .stat-number {
+    @apply text-4xl md:text-5xl font-black tracking-tight;
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Step/Jornada card ── */
+  .step-card {
+    @apply relative flex flex-col items-center text-center p-6 rounded-3xl bg-card border border-border/50;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── Multi-step form ── */
+  .form-step {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    @apply h-1.5 rounded-full overflow-hidden bg-muted;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+    background: var(--emerald-gradient);
+  }
+
+  /* ── Input premium ── */
+  .input-premium {
+    @apply w-full px-4 py-3.5 rounded-xl bg-secondary/80 border border-border
+           text-foreground placeholder:text-muted-foreground text-sm font-medium
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/60;
+  }
+
+  /* ── Label option (radio cards) ── */
+  .option-card {
+    @apply flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 border-border bg-secondary/50
+           cursor-pointer text-sm font-medium text-foreground
+           transition-all duration-200
+           hover:border-primary/50 hover:bg-primary/5;
+  }
+
+  .option-card.selected {
+    @apply border-primary bg-primary/8 text-primary;
+    border-color: hsl(var(--primary));
+    background-color: hsl(var(--primary) / 0.06);
+  }
 }
+
+/* ────────────────────────────────────────────────
+   ANIMAÇÕES CUSTOMIZADAS
+──────────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(0.5deg); }
+  66%       { transform: translateY(-4px) rotate(-0.5deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes step-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(.4,0,.6,1) infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-count-up {
+  animation: count-up 0.6s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out forwards;
+}
+
+.animate-step-in {
+  animation: step-in 0.4s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+
+/* Blob decorativo no Hero */
+.hero-blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: blob-morph 8s ease-in-out infinite;
+}
+
+@keyframes blob-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50%       { border-radius: 50% 40% 60% 30% / 40% 70% 50% 60%; }
+  75%       { border-radius: 40% 70% 40% 60% / 60% 40% 70% 50%; }
+}
+
